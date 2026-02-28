@@ -1,0 +1,9 @@
+#track-grid {
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-auto-rows: 1fr;
+}
+
+#track-grid > div {
+    border: 1px solid black;
+}

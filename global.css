@@ -1,15 +1,19 @@
 body {
     color: aliceblue;
+}
+
+.menu-body {
     display: flex;
     justify-content: center;
 }
 
-main {
+.menu-main {
     background-color: rgb(39, 39, 39);
     opacity: 98%;
     padding: 50px;
     margin: 100px;
 }
+
 
 a {
     color: inherit;

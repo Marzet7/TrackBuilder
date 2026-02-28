@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="global.css">
     <link rel="stylesheet" href="new.css">
 </head>
-<body>
-    <main>
+<body class="menu-body">
+    <main class="menu-main">
         <h2>Create New Track</h2>
         <form action="./track.html">
             <div>
@@ -17,7 +17,7 @@
             </div>
             <div>
                 <label for="size">Track size(square):</label>
-                <input type="number" name="size" id="size" required>
+                <input type="number" name="size" id="size" min="2" max="50" required>
             </div>
             <a href="./index.html"><button type="button">Back</button></a>
             <button type="submit">Create</button>
