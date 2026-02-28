@@ -1,0 +1,27 @@
+body {
+    background-image: url(./img/martin-vodička.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    color: aliceblue;
+}
+
+main {
+    background-color: rgb(39, 39, 39);
+    opacity: 98%;
+    padding: 50px;
+    margin: 100px;
+}
+
+a {
+    color: inherit;
+}
+
+h1 {
+    font-size: 48px;
+}
+
+h2 {
+    font-size: 32px;
+}
