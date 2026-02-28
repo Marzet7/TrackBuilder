@@ -1,0 +1,10 @@
+form > div {
+    display: flex;
+    margin: 10px;
+    height: 30px;
+}
+
+label {
+    width: 200px;
+    font-size: 24px;
+}

@@ -1,0 +1,25 @@
+body {
+    color: aliceblue;
+    display: flex;
+    justify-content: center;
+}
+
+main {
+    background-color: rgb(39, 39, 39);
+    opacity: 98%;
+    padding: 50px;
+    margin: 100px;
+}
+
+a {
+    color: inherit;
+}
+
+h1 {
+    font-size: 48px;
+}
+
+h2 {
+    font-size: 32px;
+}
+
