@@ -13,6 +13,13 @@ grid.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
 grid.style.gridTemplateRows = `repeat(${size}, 1fr)`;
 
 let selected;
+const tileState = Array.from({ length: size }, () => Array(size).fill(0));
+
+const materials = {
+    0: "./img/grass.png",
+    1: "./img/asphalt.png",
+    2: "./img/water.png"
+};
 
 grass.addEventListener("click", function() {
     selected = 0;
@@ -26,13 +33,13 @@ water.addEventListener("click", function() {
     selected = 2;
 })
 
-function changeMaterial(tile) {
-    switch(selected) {
-        case 1 : tile.style.backgroundImage = "url(./img/asphalt.png)"; break;
-        case 2 : tile.style.backgroundImage = "url(./img/water.png)"; break;
-        default: case 0 : tile.style.backgroundImage = "url(./img/grass.png)"; break;
-    }
-    
+function applyMaterial(tile, value) {
+    tile.style.backgroundImage = `url(${materials[value]})`;
+}
+
+function changeMaterial(tile, i, j) {
+    tileState[i][j] = selected ?? 0;
+    applyMaterial(tile, tileState[i][j]);
 }
 
 const frag = document.createDocumentFragment();
@@ -41,7 +48,7 @@ for (let i = 0; i < size; i++) {
     for (let j = 0; j < size; j++) {
         const tile = document.createElement("div");
         tile.style.backgroundImage = "url(./img/grass.png)";
-        tile.addEventListener("click", () => changeMaterial(tile))
+        tile.addEventListener("click", () => changeMaterial(tile, i, j))
         frag.appendChild(tile);
     }
 
