@@ -1,0 +1,31 @@
+const loadList = document.getElementById("loadList");
+
+function getLocalTracks() {
+    return Object.keys(localStorage)
+        .filter(key => key.startsWith("track_"))
+        .map(key => JSON.parse(localStorage.getItem(key)));
+}
+
+function renderTrackList() {
+    loadList.innerHTML = "";
+    const tracks = getLocalTracks();
+
+    if (tracks.length === 0) {
+        loadList.innerText = "No saved tracks found.";
+        return;
+    }
+
+    tracks.forEach(state => {
+        const item = document.createElement("div");
+        item.innerText = `${state.trackName} (${state.size}x${state.size})`;
+        item.addEventListener("click", () => openTrack(state));
+        loadList.appendChild(item);
+    });
+}
+
+function openTrack(state) {
+    localStorage.setItem("active_track", JSON.stringify(state));
+    window.location.href = `track.html?name=${state.trackName}&size=${state.size}`;
+}
+
+renderTrackList();

@@ -5,6 +5,9 @@ body {
 .menu-body {
     display: flex;
     justify-content: center;
+    background-image: url(./img/martin-vodička.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .menu-main {
@@ -13,7 +16,6 @@ body {
     padding: 50px;
     margin: 100px;
 }
-
 
 a {
     color: inherit;
@@ -27,3 +29,14 @@ h2 {
     font-size: 32px;
 }
 
+#loadList {
+    margin: 10px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#loadList > div:hover {
+    background-color: black;
+}
