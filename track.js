@@ -2,6 +2,8 @@ const grid = document.getElementById("track-grid");
 const grass = document.getElementById("grass");
 const asphalt = document.getElementById("asphalt");
 const water = document.getElementById("water");
+const saveBtn = document.getElementById("btn-save");
+const exportBtn = document.getElementById("btn-export");
 
 const params = new URLSearchParams(document.location.search);
 const trackName = params.get("name");
@@ -21,17 +23,11 @@ const materials = {
     2: "./img/water.png"
 };
 
-grass.addEventListener("click", function() {
-    selected = 0;
-})
+grass.addEventListener("click", function() {selected = 0;});
+asphalt.addEventListener("click", function() {selected = 1;});
+water.addEventListener("click", function() {selected = 2;});
+saveBtn.addEventListener("click", saveToLocalStorage);
 
-asphalt.addEventListener("click", function() {
-    selected = 1;
-})
-
-water.addEventListener("click", function() {
-    selected = 2;
-})
 
 function applyMaterial(tile, value) {
     tile.style.backgroundImage = `url(${materials[value]})`;
@@ -51,8 +47,22 @@ for (let i = 0; i < size; i++) {
         tile.addEventListener("click", () => changeMaterial(tile, i, j))
         frag.appendChild(tile);
     }
-
-
 }
 grid.appendChild(frag);
 
+function getTrackState() {
+    return { trackName, size, tiles: tileState };
+}
+
+function applyTrackState(state, tiles) {
+    for (let i = 0; i < state.size; i++) {
+        for (let j = 0; j < state.size; j++) {
+            tileState[i][j] = state.tiles[i][j];
+            applyMaterial(tiles[i * state.size + j], tileState[i][j]);
+        }
+    }
+}
+
+function saveToLocalStorage() {
+    localStorage.setItem(`track_${trackName}`, JSON.stringify(getTrackState()));
+}
