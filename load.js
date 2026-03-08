@@ -23,6 +23,18 @@ function renderTrackList() {
     });
 }
 
+document.getElementById("import").addEventListener("change", function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        const state = JSON.parse(e.target.result);
+        openTrack(state);
+    };
+    reader.readAsText(file);
+});
+
 function openTrack(state) {
     localStorage.setItem("active_track", JSON.stringify(state));
     window.location.href = `track.html?name=${state.trackName}&size=${state.size}`;

@@ -27,6 +27,7 @@ grass.addEventListener("click", function() {selected = 0;});
 asphalt.addEventListener("click", function() {selected = 1;});
 water.addEventListener("click", function() {selected = 2;});
 saveBtn.addEventListener("click", saveToLocalStorage);
+exportBtn.addEventListener("click", saveToFile);
 
 
 
@@ -73,4 +74,13 @@ function applyTrackState(state, tiles) {
 
 function saveToLocalStorage() {
     localStorage.setItem(`track_${trackName}`, JSON.stringify(getTrackState()));
+}
+
+function saveToFile() {
+    const blob = new Blob([JSON.stringify(getTrackState(), null, 2)], { type: "application/json" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = `${trackName}.json`;
+    a.click();
+    URL.revokeObjectURL(a.href);
 }
